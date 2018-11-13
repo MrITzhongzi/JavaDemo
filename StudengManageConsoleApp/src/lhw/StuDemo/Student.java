@@ -1,5 +1,3 @@
-package lhw.StuDemo;
-
 public class Student {
     private String name;
     private int xuehao;
@@ -28,6 +26,7 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
+    public Student(){}
 
     public Student(String name, int xuehao, int age) {
         this.name = name;
