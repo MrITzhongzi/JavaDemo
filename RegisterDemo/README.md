@@ -18,7 +18,7 @@ CREATE TABLE `user`  (
 
 #### 接口列表
 |接口|描述|
-|-|-|
+|:----|:----|
 |/login|用户登录|
 |/registerServlet|用户注册接口|
 
