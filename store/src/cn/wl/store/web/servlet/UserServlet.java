@@ -25,7 +25,7 @@ public class UserServlet extends BaseServlet {
 
         User user = new User();
 
-        try{
+        try {
 
             MyBeanUtils.populate(user, parameterMap);
             user.setUid(UUIDUtils.getId());
@@ -37,7 +37,7 @@ public class UserServlet extends BaseServlet {
             MailUtils.sendMail(user.getEmail(), user.getCode());
             req.setAttribute("msg", "用户注册成功，请激活。");
 
-        }catch (Exception e){
+        } catch (Exception e) {
             req.setAttribute("msg", "用户注册失败，请重新注册。");
             e.printStackTrace();
         }
@@ -50,13 +50,13 @@ public class UserServlet extends BaseServlet {
         UserService userService = new UserServiceImp();
         try {
             User user = userService.userActive(activeCode);
-            if(user != null){
+            if (user != null) {
                 req.setAttribute("msg", "用户激活成功");
                 user.setState(1);
                 user.setCode("");
                 userService.updateUser(user);
             }
-        } catch (Exception e){
+        } catch (Exception e) {
             req.setAttribute("msg", "用户激活失败");
             e.printStackTrace();
         }
@@ -74,18 +74,23 @@ public class UserServlet extends BaseServlet {
         UserService userService = new UserServiceImp();
 
         User user02 = null;
-        try{
+        try {
             user02 = userService.userLogin(user);
             req.getSession().setAttribute("loginUser", user02);
             resp.sendRedirect("/index.jsp");
             return null;
-        }catch (Exception e){
+        } catch (Exception e) {
             String message = e.getMessage();
             System.out.println(message);
-            req.setAttribute("msg",message);
+            req.setAttribute("msg", message);
             return "/jsp/login.jsp";
         }
     }
 
+    public String logOut(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        req.getSession().invalidate();
+        resp.sendRedirect("/index.jsp");
+        return null;
+    }
 }
 

@@ -1,10 +1,14 @@
 package cn.wl.store.web.base;
 
+import cn.wl.store.domain.Category;
+import cn.wl.store.web.servlet.CategoryServlet;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.lang.reflect.Method;
+import java.util.List;
 
 public class BaseServlet extends javax.servlet.http.HttpServlet {
 
@@ -17,6 +21,16 @@ public class BaseServlet extends javax.servlet.http.HttpServlet {
         if (null == method || "".equals(method) || method.trim().equals("")) {
             method = "execute";
         }
+
+//        if(method.equals("findAllCats")){
+//            CategoryServlet categoryServlet = new CategoryServlet();
+//            try {
+//                List<Category> allCats = categoryServlet.findAllCats(req, resp);
+//                return;
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        }
 
         // 注意:此处的this代表的是子类的对象
         // System.out.println(this);
