@@ -12,7 +12,6 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Map;
 
 public class UserServlet extends BaseServlet {
@@ -62,6 +61,30 @@ public class UserServlet extends BaseServlet {
             e.printStackTrace();
         }
         return "/jsp/info.jsp";
+    }
+
+    public String loginUI(HttpServletRequest req, HttpServletResponse resp) {
+        return "/jsp/login.jsp";
+    }
+
+    public String userLogin(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        User user = new User();
+        MyBeanUtils.populate(user, req.getParameterMap());
+
+        UserService userService = new UserServiceImp();
+
+        User user02 = null;
+        try{
+            user02 = userService.userLogin(user);
+            req.getSession().setAttribute("loginUser", user02);
+            resp.sendRedirect("/index.jsp");
+            return null;
+        }catch (Exception e){
+            String message = e.getMessage();
+            System.out.println(message);
+            req.setAttribute("msg",message);
+            return "/jsp/login.jsp";
+        }
     }
 
 }

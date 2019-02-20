@@ -5,8 +5,10 @@ import cn.wl.store.domain.User;
 import cn.wl.store.utils.JDBCUtils;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserDaoImp implements UserDao {
     @Override
@@ -36,5 +38,13 @@ public class UserDaoImp implements UserDao {
                 user.getUid() };
         QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
         qr.update(sql, params);
+    }
+
+    @Override
+    public User userLogin(User user) throws SQLException{
+        String sql = "select * from user where username = ? and password = ?";
+        QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+
+        return qr.query(sql, new BeanHandler<User>(User.class), user.getUsername(), user.getPassword());
     }
 }

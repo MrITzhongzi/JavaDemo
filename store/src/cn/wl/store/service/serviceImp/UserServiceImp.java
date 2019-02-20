@@ -28,5 +28,18 @@ public class UserServiceImp implements UserService {
         userDao.updateUser(user);
     }
 
+    @Override
+    public User userLogin(User user) throws SQLException {
+        UserDao userDao = new UserDaoImp();
+        User uu = userDao.userLogin(user);
+        if(null == uu){
+            throw new RuntimeException("密码有误！");
+        } else if(uu.getState() == 0){
+            throw new RuntimeException("用户未激活！");
+        } else {
+            return uu;
+        }
+    }
+
 
 }
