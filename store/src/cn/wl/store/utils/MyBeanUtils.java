@@ -3,6 +3,9 @@ package cn.wl.store.utils;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
 
 import java.util.Map;
 
@@ -45,4 +48,6 @@ public class MyBeanUtils {
             throw new RuntimeException(e);
         }
     }
+
+
 }
