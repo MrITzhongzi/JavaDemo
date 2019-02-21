@@ -1,8 +1,8 @@
 package cn.wl.store.web.servlet;
 
-import cn.wl.store.domain.Category;
-import cn.wl.store.service.CategoryService;
-import cn.wl.store.service.serviceImp.CategoryServiceImp;
+import cn.wl.store.domain.Product;
+import cn.wl.store.service.ProductService;
+import cn.wl.store.service.serviceImp.ProductServiceImp;
 import cn.wl.store.web.base.BaseServlet;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,9 +12,11 @@ import java.util.List;
 public class IndexServlet extends BaseServlet {
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-        CategoryService categoryService = new CategoryServiceImp();
-        List<Category> list = categoryService.getAllCats();
-        req.setAttribute("callCats", list);
+        ProductService productService = new ProductServiceImp();
+        List<Product> newProducts =  productService.findAllNewProducts();
+        List<Product> hotProducts = productService.findAllHotProducts();
+        req.setAttribute("newProducts", newProducts);
+        req.setAttribute("hotProducts", hotProducts);
         return "/jsp/index.jsp";
     }
 }

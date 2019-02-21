@@ -84,7 +84,7 @@
         $.post("/CategoryServlet", obj, function (data) {
             var str = "";
             data.forEach(function (val, key) {
-                str += "<li><a href=\"#\">"
+                str += "<li><a href='/ProductServlet?method=findProductsByCidWithPage&num=1&cid="+ val.cid +"'>"
                 str += val.cname
                 str += "</a></li>"
             });
