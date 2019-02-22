@@ -1,7 +1,10 @@
 package cn.wl.store.web.base;
 
+import cn.wl.store.domain.Cart;
 import cn.wl.store.domain.Category;
+import cn.wl.store.web.servlet.CartServlet;
 import cn.wl.store.web.servlet.CategoryServlet;
+import cn.wl.store.web.servlet.ProductServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,10 +25,12 @@ public class BaseServlet extends javax.servlet.http.HttpServlet {
             method = "execute";
         }
 
-//        if(method.equals("findAllCats")){
-//            CategoryServlet categoryServlet = new CategoryServlet();
+//        if(method.equals("findProductByPid")){
+//            ProductServlet productServlet = new ProductServlet();
 //            try {
-//                List<Category> allCats = categoryServlet.findAllCats(req, resp);
+//                String productByPid = productServlet.findProductByPid(req, resp);
+//                System.out.println(productByPid);
+//                req.getRequestDispatcher(productByPid).forward(req, resp);
 //                return;
 //            } catch (Exception e) {
 //                e.printStackTrace();

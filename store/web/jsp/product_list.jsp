@@ -48,7 +48,7 @@
         </div>
         <c:forEach items="${page.list}" var="pro">
         <div class="col-md-2">
-            <a href="${pageContext.request.contextPath}/jsp/product_info.jsp">
+            <a href="${pageContext.request.contextPath}/ProductServlet?method=findProductByPid&pid=${pro.pid}">
                 <img src="${pageContext.request.contextPath}/${pro.pimage}" width="170" height="170"
                      style="display: inline-block;">
             </a>
