@@ -9,6 +9,8 @@ import cn.wl.store.web.base.BaseServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Iterator;
+import java.util.List;
 
 public class CartServlet extends BaseServlet {
     // 添加购物项 到购物车
@@ -30,4 +32,20 @@ public class CartServlet extends BaseServlet {
         resp.sendRedirect("/jsp/cart.jsp");
         return null;
     }
+
+    public String removeCartItem (HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        String pid = req.getParameter("pid");
+        cart.removeCartItem(pid);
+        resp.sendRedirect("/jsp/cart.jsp");
+        return null;
+    }
+
+    public String clearCart (HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        Cart cart = (Cart) req.getSession().getAttribute("cart");
+        cart.clearCart();
+        resp.sendRedirect("/jsp/cart.jsp");
+        return null;
+    }
+
 }

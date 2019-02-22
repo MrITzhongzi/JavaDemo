@@ -12,7 +12,7 @@ public class Cart {
     public double getTotal() {
         double total = 0;
         for (CartItem cartItem : list) {
-            total += cartItem.getProduct().getShop_price() * cartItem.getNum();
+            total += cartItem.getSubTotal();
         }
         return total;
     }
@@ -47,5 +47,13 @@ public class Cart {
         if (!flag) {
             list.add(cartItem);
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "total=" + total +
+                ", list=" + list +
+                '}';
     }
 }

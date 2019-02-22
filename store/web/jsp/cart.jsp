@@ -141,7 +141,7 @@
                                 <span class="subtotal">￥${cartItem.subTotal}</span>
                             </td>
                             <td>
-                                <a href="javascript:;" class="delete">删除</a>
+                                <a href="/CartServlet?method=removeCartItem&pid=${cartItem.product.pid}" class="delete">删除</a>
                             </td>
                         </tr>
                     </c:forEach>
@@ -159,7 +159,7 @@
             &nbsp; 商品金额: <strong style="color:#ff6600;">￥${cart.total}元</strong>
         </div>
         <div style="text-align:right;margin-top:10px;margin-bottom:10px;">
-            <a href="${pageContext.request.contextPath}/jsp/order_info.jsp" id="clear" class="clear">清空购物车</a>
+            <a href="${pageContext.request.contextPath}/CartServlet?method=clearCart" id="clear" class="clear">清空购物车</a>
             <a href="${pageContext.request.contextPath}/jsp/order_info.jsp">
                 <%--提交表单 --%>
                 <input type="submit" width="100" value="提交订单" name="submit" border="0"
