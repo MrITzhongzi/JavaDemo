@@ -51,4 +51,18 @@ public class OrderServlet extends BaseServlet {
         //转发到下一个页面 jsp/order_info.jsp
         return "/jsp/order_info.jsp";
     }
+
+    public String findMyOrdersWithPage(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+        User user = (User)req.getSession().getAttribute("loginUser");
+        int curNum = Integer.parseInt(req.getParameter("num"));
+        OrderService orderService = new OrderServiceImp();
+        PageModel pm = null;
+        try {
+            pm = orderService.findMyOrdersWithPage(user, curNum);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        req.setAttribute("page", pm);
+        return "/jsp/order_list.jsp";
+    }
 }

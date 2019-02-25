@@ -100,7 +100,7 @@ public class JDBCUtils {
 			//事务提交
 			conn.commit();
 			//关闭资源
-			conn.close();
+//			conn.close();
 			//解除版定
 			tl.remove();
 		} catch (SQLException e) {
