@@ -9,8 +9,6 @@ import cn.wl.store.web.base.BaseServlet;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Iterator;
-import java.util.List;
 
 public class CartServlet extends BaseServlet {
     // 添加购物项 到购物车
