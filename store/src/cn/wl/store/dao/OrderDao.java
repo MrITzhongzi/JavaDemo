@@ -20,4 +20,6 @@ public interface OrderDao {
     int getTotalRecord(User user) throws SQLException;
 
     List findMyOrdersWithPage(User user, int startIndex, int pageSize) throws Exception;
+
+    Order findOrderByOid(String oid) throws SQLException;
 }

@@ -65,4 +65,12 @@ public class OrderServlet extends BaseServlet {
         req.setAttribute("page", pm);
         return "/jsp/order_list.jsp";
     }
+
+    public String findOrderByOid(HttpServletRequest req, HttpServletResponse resp) throws Exception{
+        String oid = req.getParameter("oid");
+        OrderService orderService = new OrderServiceImp();
+        Order order = orderService.findOrderByOid(oid);
+        req.setAttribute("order", order);
+        return "/jsp/order_info.jsp";
+    }
 }

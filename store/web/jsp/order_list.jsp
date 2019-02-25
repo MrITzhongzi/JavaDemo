@@ -41,7 +41,23 @@
                 <c:forEach items="${page.list}" var="item">
                     <tbody>
                     <tr class="success">
-                        <th colspan="5">订单编号:${item.oid}</th>
+                        <th colspan="5">
+                            订单编号:${item.oid}
+                            <c:if test="${item.state == 1}">
+                                <a href="${pageContext.request.contextPath}/OrderServlet?method=findOrderByOid&oid=${item.oid}">付款</a>
+                            </c:if>
+                            <c:if test="${item.state == 2}">
+                                未发货
+                            </c:if>
+                            <c:if test="${item.state == 3}">
+                                <a href="#">
+                                    签收
+                                </a>
+                            </c:if>
+                            <c:if test="${item.state == 4}">
+                                交易完成
+                            </c:if>
+                        </th>
                     </tr>
                     <tr class="warning">
                         <th>图片</th>
@@ -78,10 +94,6 @@
     </div>
     <%--分页--%>
     <%@include file="/jsp/pageFile.jsp" %>
-</div>
-
-<div style="margin-top:50px;">
-    <img src="${pageContext.request.contextPath}/img/footer.jpg" width="100%" height="78" alt="我们的优势" title="我们的优势"/>
 </div>
 
 <%@include file="/jsp/footer.jsp" %>

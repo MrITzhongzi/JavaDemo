@@ -54,4 +54,11 @@ public class OrderServiceImp implements OrderService {
         pm.setUrl("OrderServlet?method=findMyOrdersWithPage");
         return pm;
     }
+
+    @Override
+    public Order findOrderByOid(String oid) throws SQLException {
+        OrderDao orderDao = new OrderDaoImp();
+        Order order = orderDao.findOrderByOid(oid);
+        return order;
+    }
 }

@@ -11,6 +11,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.ConvertUtils;
 import org.apache.commons.beanutils.converters.DateConverter;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapListHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
@@ -90,5 +91,25 @@ public class OrderDaoImp implements OrderDao {
         }
 
         return list;
+    }
+
+    @Override
+    public Order findOrderByOid(String oid) throws SQLException {
+        String sql = "select * from orders where oid = ?";
+        QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+        Order order = qr.query(sql, new BeanHandler<>(Order.class), oid);
+        sql = "select * from orderitem where oid = ?";
+        List<OrderItem> list  = qr.query(sql, new BeanListHandler<>(OrderItem.class),oid);
+        for (OrderItem orderItem:
+             list) {
+            sql = "select pid from orderitem where itemid = ?";
+            String pid = qr.query(sql, new ScalarHandler<>(), orderItem.getItemid());
+            sql = "select * from product where pid = ?";
+            Product pro = qr.query(sql, new BeanHandler<>(Product.class), pid);
+            orderItem.setProduct(pro);
+            orderItem.setOrder(order);
+        }
+        order.setList(list);
+        return order;
     }
 }

@@ -10,4 +10,6 @@ public interface OrderService{
     void saveOrder(Order order) throws SQLException;
 
     PageModel findMyOrdersWithPage(User user, int curNum) throws Exception;
+
+    Order findOrderByOid(String oid) throws SQLException;
 }

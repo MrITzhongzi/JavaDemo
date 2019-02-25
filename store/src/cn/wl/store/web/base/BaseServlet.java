@@ -4,6 +4,7 @@ import cn.wl.store.domain.Cart;
 import cn.wl.store.domain.Category;
 import cn.wl.store.web.servlet.CartServlet;
 import cn.wl.store.web.servlet.CategoryServlet;
+import cn.wl.store.web.servlet.OrderServlet;
 import cn.wl.store.web.servlet.ProductServlet;
 
 import javax.servlet.ServletException;
@@ -25,12 +26,12 @@ public class BaseServlet extends javax.servlet.http.HttpServlet {
             method = "execute";
         }
 
-//        if(method.equals("findProductByPid")){
-//            ProductServlet productServlet = new ProductServlet();
+//        if(method.equals("findOrderByOid")){
 //            try {
-//                String productByPid = productServlet.findProductByPid(req, resp);
-//                System.out.println(productByPid);
-//                req.getRequestDispatcher(productByPid).forward(req, resp);
+//                String oid = req.getParameter("oid");
+//                OrderServlet orderServlet = new OrderServlet();
+//                orderServlet.findOrderByOid(req, resp);
+//                System.out.println(111);
 //                return;
 //            } catch (Exception e) {
 //                e.printStackTrace();
