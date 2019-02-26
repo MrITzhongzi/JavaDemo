@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css" type="text/css"/>
     <script src="${pageContext.request.contextPath}/js/jquery-1.11.3.min.js" type="text/javascript"></script>
     <script src="${pageContext.request.contextPath}/js/bootstrap.min.js" type="text/javascript"></script>
+    <style>
+        .item img {
+            height: auto!important;
+        }
+    </style>
 </head>
 
 <body>
