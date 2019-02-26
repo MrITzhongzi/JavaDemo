@@ -22,4 +22,6 @@ public interface OrderDao {
     List findMyOrdersWithPage(User user, int startIndex, int pageSize) throws Exception;
 
     Order findOrderByOid(String oid) throws SQLException;
+
+    void updateOrder(Order order) throws SQLException;
 }

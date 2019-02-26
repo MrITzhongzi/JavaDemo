@@ -61,4 +61,10 @@ public class OrderServiceImp implements OrderService {
         Order order = orderDao.findOrderByOid(oid);
         return order;
     }
+
+    @Override
+    public void updateOrder(Order order) throws SQLException {
+        OrderDao orderDao = new OrderDaoImp();
+        orderDao.updateOrder(order);
+    }
 }

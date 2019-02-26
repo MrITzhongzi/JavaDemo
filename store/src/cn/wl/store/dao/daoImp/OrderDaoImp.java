@@ -112,4 +112,12 @@ public class OrderDaoImp implements OrderDao {
         order.setList(list);
         return order;
     }
+
+    @Override
+    public void updateOrder(Order order) throws SQLException {
+        String sql = "update orders set ordertime = ?, total = ?, state = ?, address = ?, name=?, telephone= ? where oid = ?";
+        QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+        Object[] params = { order.getOrdertime(), order.getTotal(), order.getState(), order.getAddress(), order.getName(), order.getTelephone(),order.getOid()};
+        qr.update(sql, params);
+    }
 }
