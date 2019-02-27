@@ -3,6 +3,7 @@ package cn.wl.store.dao.daoImp;
 import cn.wl.store.dao.ProductDao;
 import cn.wl.store.domain.Product;
 import cn.wl.store.utils.JDBCUtils;
+import jdk.nashorn.internal.scripts.JD;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
@@ -47,5 +48,22 @@ public class ProductDaoImp implements ProductDao {
         QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
         qr.query(sql, new BeanListHandler<>(Product.class), cid, startIndex, pageSize);
         return qr.query(sql, new BeanListHandler<>(Product.class), cid, startIndex, pageSize);
+    }
+
+    @Override
+    public int findProductCount() throws SQLException {
+        String sql = "select count(*) from product";
+        QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+        Long count = (Long)qr.query(sql, new ScalarHandler<>());
+        return count.intValue();
+    }
+
+    @Override
+    public List<Product> findAllProductsWithPage(int curNum) throws SQLException {
+        String sql = "select * from product limit ?,?";
+        QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+
+
+        return qr.query(sql, new BeanListHandler<>(Product.class), curNum * 5, 5);
     }
 }

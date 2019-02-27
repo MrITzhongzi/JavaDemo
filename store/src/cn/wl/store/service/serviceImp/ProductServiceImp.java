@@ -37,4 +37,16 @@ public class ProductServiceImp implements ProductService {
         pm.setUrl("ProductServlet?method=findProductsByCidWithPage&cid=" + cid);
         return pm;
     }
+
+    @Override
+    public PageModel findAllProductsWithPage(int curNum) throws SQLException {
+
+        ProductDao productDao = new ProductDaoImp();
+        int totalCount = productDao.findProductCount();
+        PageModel pm = new PageModel(curNum, totalCount, 5);
+        List<Product> list = productDao.findAllProductsWithPage(curNum);
+        pm.setList(list);
+        pm.setUrl("");
+         return pm;
+    }
 }
