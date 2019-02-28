@@ -1,0 +1,46 @@
+<c3p0-config>
+	<!-- 默认配置，如果没有指定则使用这个配置 -->
+	<default-config>
+		<property name="driverClass">com.mysql.cj.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://192.168.80.250:3306/store?useSSL=false</property>
+		<property name="user">root</property>
+		<property name="password">admin</property>
+		<property name="checkoutTimeout">3000</property>
+		<property name="idleConnectionTestPeriod">100</property>
+		<property name="initialPoolSize">10</property>
+		<property name="maxIdleTime">20</property>
+		<property name="maxPoolSize">40</property>
+		<property name="minPoolSize">10</property>
+		<property name="maxStatements">200</property>
+		<user-overrides user="test-user">
+			<property name="maxPoolSize">10</property>
+			<property name="minPoolSize">1</property>
+			<property name="maxStatements">0</property>
+		</user-overrides>
+	</default-config>
+
+	<!--华为云测试服务器 -->
+	<named-config name="test">
+		<property name="driverClass">com.mysql.jdbc.Driver</property>
+		<property name="jdbcUrl">jdbc:mysql://114.115.250.129:3306/store?useSSL=false</property>
+		<property name="user">root</property>
+		<property name="password">Huanghai@2019</property>
+		<property name="acquireIncrement">5</property>
+		<property name="initialPoolSize">10</property>
+		<property name="minPoolSize">10</property>
+		<property name="maxPoolSize">50</property>
+
+		<!-- intergalactoApp adopts a different approach to configuring statement caching -->
+		<property name="maxStatements">0</property>
+		<property name="maxStatementsPerConnection">5</property>
+
+		<!-- he's important, but there's only one of him -->
+		<user-overrides user="master-of-the-universe">
+			<property name="acquireIncrement">1</property>
+			<property name="initialPoolSize">1</property>
+			<property name="minPoolSize">1</property>
+			<property name="maxPoolSize">5</property>
+			<property name="maxStatementsPerConnection">50</property>
+		</user-overrides>
+	</named-config>
+</c3p0-config>
