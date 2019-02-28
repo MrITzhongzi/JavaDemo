@@ -107,7 +107,7 @@ public class AdminProductServlet extends BaseServlet {
             ProductService productService = new ProductServiceImp();
             productService.saveProduct(product);
 
-            resp.sendRedirect("/AdminProductServlet?method=findAllProductsWithPage&num=1");
+            resp.sendRedirect("/store/AdminProductServlet?method=findAllProductsWithPage&num=1");
         } catch (Exception e) {
 
         }

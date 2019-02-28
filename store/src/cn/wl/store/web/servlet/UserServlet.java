@@ -60,7 +60,7 @@ public class UserServlet extends BaseServlet {
             req.setAttribute("msg", "用户激活失败");
             e.printStackTrace();
         }
-        return "/jsp/info.jsp";
+        return "/store/jsp/info.jsp";
     }
 
     public String loginUI(HttpServletRequest req, HttpServletResponse resp) {
@@ -77,19 +77,19 @@ public class UserServlet extends BaseServlet {
         try {
             user02 = userService.userLogin(user);
             req.getSession().setAttribute("loginUser", user02);
-            resp.sendRedirect("/index.jsp");
+            resp.sendRedirect("/store/index.jsp");
             return null;
         } catch (Exception e) {
             String message = e.getMessage();
             System.out.println(message);
             req.setAttribute("msg", message);
-            return "/jsp/login.jsp";
+            return "/store/jsp/login.jsp";
         }
     }
 
     public String logOut(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         req.getSession().invalidate();
-        resp.sendRedirect("/index.jsp");
+        resp.sendRedirect("/store/index.jsp");
         return null;
     }
 }

@@ -27,7 +27,7 @@ public class CartServlet extends BaseServlet {
         cartItem.setProduct(product);
         cart.addCartItemToCart(cartItem);
         req.getSession().setAttribute("cart", cart);
-        resp.sendRedirect("/jsp/cart.jsp");
+        resp.sendRedirect("/store/jsp/cart.jsp");
         return null;
     }
 
@@ -35,14 +35,14 @@ public class CartServlet extends BaseServlet {
         Cart cart = (Cart) req.getSession().getAttribute("cart");
         String pid = req.getParameter("pid");
         cart.removeCartItem(pid);
-        resp.sendRedirect("/jsp/cart.jsp");
+        resp.sendRedirect("/store/jsp/cart.jsp");
         return null;
     }
 
     public String clearCart (HttpServletRequest req, HttpServletResponse resp) throws Exception {
         Cart cart = (Cart) req.getSession().getAttribute("cart");
         cart.clearCart();
-        resp.sendRedirect("/jsp/cart.jsp");
+        resp.sendRedirect("/store/jsp/cart.jsp");
         return null;
     }
 

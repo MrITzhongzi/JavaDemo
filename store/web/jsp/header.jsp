@@ -79,12 +79,11 @@
 </body>
 <script>
     $(function () {
-        var url = "/CategoryServlet";
         var obj = {"method": "findAllCats"};
-        $.post("/CategoryServlet", obj, function (data) {
+        $.post("/store/CategoryServlet", obj, function (data) {
             var str = "";
             data.forEach(function (val, key) {
-                str += "<li><a href='/ProductServlet?method=findProductsByCidWithPage&num=1&cid="+ val.cid +"'>"
+                str += "<li><a href='/store/ProductServlet?method=findProductsByCidWithPage&num=1&cid="+ val.cid +"'>"
                 str += val.cname
                 str += "</a></li>"
             });

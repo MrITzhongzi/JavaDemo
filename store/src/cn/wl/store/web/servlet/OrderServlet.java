@@ -101,7 +101,7 @@ public class OrderServlet extends BaseServlet {
         md5.update( dataStr.getBytes());
         String mdStr = new BigInteger(1, md5.digest()).toString(16);
 
-        StringBuffer mySb = new StringBuffer("/OrderServlet?method=callBack&oid=" + oid + "&total=" + order.getTotal() + "&state=" + order.getState() + "&address=" + order.getAddress() + "&name=" + order.getName() + "&telephone=" + order.getTelephone());
+        StringBuffer mySb = new StringBuffer("/store/OrderServlet?method=callBack&oid=" + oid + "&total=" + order.getTotal() + "&state=" + order.getState() + "&address=" + order.getAddress() + "&name=" + order.getName() + "&telephone=" + order.getTelephone());
         mySb.append("&mdStr=").append(mdStr);
 
         System.out.println(mySb.toString());
