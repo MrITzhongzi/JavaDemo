@@ -19,4 +19,6 @@ public interface ProductDao {
     int findProductCount() throws SQLException;
 
     List<Product> findAllProductsWithPage(int curNum) throws  SQLException;
+
+    void saveProduct(Product product) throws SQLException;
 }

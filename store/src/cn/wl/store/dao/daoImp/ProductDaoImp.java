@@ -60,10 +60,17 @@ public class ProductDaoImp implements ProductDao {
 
     @Override
     public List<Product> findAllProductsWithPage(int curNum) throws SQLException {
-        String sql = "select * from product limit ?,?";
+        String sql = "select * from product order by pdate desc limit ?,?";
         QueryRunner qr = new QueryRunner(JDBCUtils.getDataSource());
+        List<Product> query = qr.query(sql, new BeanListHandler<>(Product.class), (curNum - 1) * 5, 5);
+        return query;
+    }
 
-
-        return qr.query(sql, new BeanListHandler<>(Product.class), curNum * 5, 5);
+    @Override
+    public void saveProduct(Product product) throws SQLException {
+        String sql = "insert into product values(?,?,?,?,?,?,?,?,?,?)";
+        QueryRunner queryRunner = new QueryRunner(JDBCUtils.getDataSource());
+        Object[] params = {product.getPid(), product.getPname(), product.getMarket_price(), product.getShop_price(),product.getPimage(),product.getPdate(),product.getIsHot(), product.getPdesc(),product.getPflag(),product.getCid()};
+        queryRunner.update(sql, params);
     }
 }

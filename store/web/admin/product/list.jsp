@@ -9,7 +9,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/public.js"></script>
     <script type="text/javascript">
         function addProduct() {
-            window.location.href = "${pageContext.request.contextPath}/AdminProductServlet?method=addProduct";
+            window.location.href = "${pageContext.request.contextPath}/AdminProductServlet?method=addProductUI";
         }
     </script>
 </HEAD>
@@ -71,7 +71,7 @@
                             <td style="CURSOR: hand; HEIGHT: 22px" align="center"
                                 width="17%">
                                 <img width="40" height="45"
-                                     src="${ pageContext.request.contextPath }/products/1/c_0037.jpg">
+                                     src="${ pageContext.request.contextPath }${p.pimage}">
                             </td>
                             <td style="CURSOR: hand; HEIGHT: 22px" align="center"
                                 width="17%">

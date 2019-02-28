@@ -49,4 +49,10 @@ public class ProductServiceImp implements ProductService {
         pm.setUrl("");
          return pm;
     }
+
+    @Override
+    public void saveProduct(Product product) throws SQLException {
+        ProductDao productDao = new ProductDaoImp();
+        productDao.saveProduct(product);
+    }
 }
